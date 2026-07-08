@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRICENT AEROSPACE — Sense. Integrate. Deliver.</title>
+  <meta name="description" content="TRICENT AEROSPACE designs, builds and supports AI-enabled unmanned aircraft systems for defence, homeland security, critical infrastructure and industry. Headquartered in Lucknow, India." />
+  <link rel="canonical" href="https://www.tricentaerospace.in/" />
+  <link rel="icon" type="image/png" href="/logo-mark.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="TRICENT AEROSPACE" />
+  <meta property="og:title" content="TRICENT AEROSPACE — Sense. Integrate. Deliver." />
+  <meta property="og:description" content="AI-enabled unmanned systems for critical operations. Headquartered in Lucknow, India." />
+  <meta property="og:url" content="https://www.tricentaerospace.in/" />
+  <meta property="og:image" content="https://www.tricentaerospace.in/logo-mark.png" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+
+  <!-- ============ GCS BOOT SEQUENCE ============ -->
+  <div id="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <img class="boot-logo" src="/logo-mark.png" alt="" />
+      <div class="boot-mark">TRICENT<span> AEROSPACE</span></div>
+      <div class="boot-lines mono">
+        <div class="boot-line" data-t="0">&gt; LINK ACQUIRED</div>
+        <div class="boot-line" data-t="1">&gt; SENSORS NOMINAL</div>
+        <div class="boot-line" data-t="2">&gt; AUTONOMY STACK LOADED</div>
+      </div>
+      <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ============ TOP NAVIGATION ============ -->
+  <header id="topnav">
+    <a class="nav-brand" href="#home" data-nav>
+      <img class="nav-logo" src="/logo-mark.png" alt="TRICENT AEROSPACE logo" />
+      <span class="nav-name">TRICENT<b> AEROSPACE</b></span>
+    </a>
+    <nav class="nav-links" id="nav-links">
+      <a href="#home" data-nav>HOME</a>
+      <div class="nav-drop">
+        <button type="button" aria-haspopup="true">PRODUCTS &amp; SERVICES <i>▾</i></button>
+        <div class="drop-panel">
+          <div class="drop-col">
+            <p class="mono drop-head">PRODUCTS</p>
+            <a href="#products" data-nav>Multi-rotor Patrol UAS</a>
+            <a href="#products" data-nav>VTOL / ISR UAS</a>
+            <a href="#products" data-nav>Micro-Reconnaissance UAS</a>
+            <a href="#products" data-nav>Medium-Payload Logistics UAS</a>
+            <a href="#products" data-nav>Payload · GCS · Edge-AI Kits</a>
+            <a href="#products" data-nav>AI Mission Analytics &amp; Fleet Dashboard</a>
+            <a href="#airspace" data-nav>Counter-UAS &amp; Airspace Awareness</a>
+          </div>
+          <div class="drop-col">
+            <p class="mono drop-head">SERVICES</p>
+            <a href="#services" data-nav>Systems Integration</a>
+            <a href="#services" data-nav>MRO &amp; Sustainment</a>
+            <a href="#services" data-nav>Training</a>
+            <a href="#services" data-nav>Testing-as-a-Service</a>
+          </div>
+        </div>
+      </div>
+      <a href="#technology" data-nav>TECHNOLOGY</a>
+      <div class="nav-drop">
+        <button type="button" aria-haspopup="true">ABOUT <i>▾</i></button>
+        <div class="drop-panel single">
+          <div class="drop-col">
+            <a href="#about" data-nav>Who We Are</a>
+            <a href="#about" data-nav>Mission &amp; Vision</a>
+            <a href="#company" data-nav>Leadership</a>
+            <a href="#company" data-nav>Headquarters &amp; Facility</a>
+          </div>
+        </div>
+      </div>
+      <a href="#newsroom" data-nav>NEWSROOM</a>
+      <a href="#contact" class="nav-cta" data-nav>CONTACT</a>
+    </nav>
+    <button id="nav-burger" aria-label="Menu"><i></i><i></i><i></i></button>
+  </header>
+
+  <!-- ============ FIXED GCS HUD CHROME ============ -->
+  <div class="hud" aria-hidden="true">
+    <div class="hud-grid"></div>
+    <div class="hud-scanline"></div>
+    <i class="hud-corner bl"></i><i class="hud-corner br"></i>
+    <i class="hud-tick bottom"></i>
+    <i class="hud-tick left"></i><i class="hud-tick right"></i>
+    <div class="hud-bar bottom mono">
+      <span>TRICENT AEROSPACE · LUCKNOW, INDIA</span>
+      <span class="hud-sec-label">HOME</span>
+      <span class="hud-utc">UTC --:--:--</span>
+    </div>
+  </div>
+
+  <!-- Mission flight-path / waypoint rail (populated by JS) -->
+  <nav id="wp-rail" aria-label="Page progress"></nav>
+
+  <main id="page">
+
+    <!-- ============ HOME ============ -->
+    <section id="home" class="cine" data-wp="01" data-label="HOME">
+      <div class="stage">
+        <canvas id="hero-canvas"></canvas>
+        <div class="stage-ui hero-copy">
+          <img class="hero-logo" id="hero-logo" src="/logo-mark.png" alt="" />
+          <h1 id="hero-title" aria-label="TRICENT AEROSPACE">
+            <span class="line l1">TRICENT</span>
+            <span class="line l2">AEROSPACE</span>
+          </h1>
+          <p class="tagline" id="hero-tagline">Sense.&nbsp; Integrate.&nbsp; Deliver.</p>
+          <p class="subline" id="hero-subline">AI-enabled unmanned systems for critical operations.</p>
+          <p class="mono scroll-hint" id="hero-hint">SCROLL TO EXPLORE<br/>▼</p>
+        </div>
+        <div class="stage-ui hero-readout mono" id="hero-readout">
+          <span>FLAGSHIP · VTOL / ISR UAS</span>
+          <span id="hero-azimuth">AZ 000.0°</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="copy-sec" data-wp="02" data-label="ABOUT">
+      <div class="copy-wrap wide">
+        <p class="mono kicker reveal">ABOUT TRICENT AEROSPACE</p>
+        <h2 class="reveal">Engineered for<br/>the Mission</h2>
+        <div class="mission-lines">
+          <p class="reveal">TRICENT AEROSPACE is an Indian deep-tech aerospace company. We design,
+            manufacture and support AI-enabled unmanned aircraft systems for defence, homeland
+            security, critical infrastructure and industry.</p>
+          <p class="reveal">Critical operations need more than standalone drones. They need platforms
+            that <em>sense reliably</em>, systems that <em>integrate cleanly</em>, and outcomes that can be
+            <em>delivered in the field</em> — under real conditions.</p>
+          <p class="reveal">We build the aircraft, the mission systems, and the integration discipline
+            between them — as one engineering problem.</p>
+        </div>
+
+        <div class="mvp-grid">
+          <div class="mvp reveal">
+            <p class="mono mvp-head">MISSION</p>
+            <p>To design, build and support unmanned systems that critical operators can trust in the field — every flight, every time.</p>
+          </div>
+          <div class="mvp reveal">
+            <p class="mono mvp-head">VISION</p>
+            <p>To be the benchmark for dependable, intelligent unmanned-systems engineering from India — trusted at home, respected globally.</p>
+          </div>
+          <div class="mvp reveal">
+            <p class="mono mvp-head">PURPOSE</p>
+            <p>Turning airborne sensing into decisions people can act on — for the teams who protect borders, cities, infrastructure and industry.</p>
+          </div>
+          <div class="mvp reveal">
+            <p class="mono mvp-head">OBJECTIVES</p>
+            <ul>
+              <li>Deliver dependable unmanned platforms for critical operations.</li>
+              <li>Advance indigenous design and manufacturing of mission systems.</li>
+              <li>Ship one integrated architecture across every platform.</li>
+              <li>Support every aircraft through its full service life.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pillars">
+          <div class="pillar reveal">
+            <span class="mono p-num">01</span>
+            <h3>Sense</h3>
+            <p>Stabilised EO/IR and edge inference — intelligence is produced on the airframe, not after landing.</p>
+          </div>
+          <div class="pillar reveal">
+            <span class="mono p-num">02</span>
+            <h3>Integrate</h3>
+            <p>One autonomy stack, one payload interface, one GCS layer — shared across every platform we build.</p>
+          </div>
+          <div class="pillar reveal">
+            <span class="mono p-num">03</span>
+            <h3>Deliver</h3>
+            <p>Manufactured, tested and supported from our own facility — platforms arrive mission-ready.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OPERATIONS SHOWCASE (FLYOVER) ============ -->
+    <section id="operations" class="cine" data-wp="03" data-label="IN OPERATION">
+      <div class="stage">
+        <canvas id="terrain-canvas"></canvas>
+        <div class="stage-ui telemetry mono" id="telemetry">
+          <div class="tele-reticle">
+            <i class="rt h"></i><i class="rt v"></i>
+            <i class="rt box"></i>
+            <span class="rt-label">NADIR EO</span>
+          </div>
+          <div class="tele tl">
+            <div>ALT AGL <b id="t-alt">120.0 M</b></div>
+            <div>GS <b id="t-gs">18.2 M/S</b></div>
+            <div>HDG <b id="t-hdg">007°</b></div>
+          </div>
+          <div class="tele tr">
+            <div id="t-lat">26.84670 N</div>
+            <div id="t-lon">80.94981 E</div>
+            <div>SURVEY RUN · NADIR</div>
+          </div>
+          <div class="tele bl">
+            <div>BAT <b id="t-bat">94%</b> · 22.6 V</div>
+            <div>LINK C2 <b class="ok">SOLID</b> · RSSI −62 dBm</div>
+          </div>
+          <div class="tele br">
+            <div><span class="rec">REC ●</span> <span id="t-tc">00:00:00:00</span></div>
+            <div>SENSOR EO-1 · GIMBAL −90.0°</div>
+          </div>
+          <div class="tele-caption">
+            <p class="mono kicker">TRICENT IN OPERATION</p>
+            <h2>The aircraft is the sensor.</h2>
+            <p class="tele-sub">Every TRICENT platform flies with stabilised EO/IR and edge inference on board — intelligence is produced in flight, not after landing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRODUCTS ============ -->
+    <section id="products" class="copy-sec" data-wp="04" data-label="PRODUCTS">
+      <div class="copy-wrap wide">
+        <p class="mono kicker reveal">PRODUCTS</p>
+        <h2 class="reveal">Unmanned Platforms<br/>&amp; Mission Systems</h2>
+        <p class="sec-sub reveal">Configurations are tailored to each operator. Pricing is provided
+          as a formal quotation on request.</p>
+        <div class="prod-grid">
+          <article class="prod reveal">
+            <p class="mono prod-i">P-01</p>
+            <h3>Multi-rotor Patrol UAS</h3>
+            <p>Persistent local ISR for perimeter and area security. Rapid deployment, minimal footprint.</p>
+            <a class="mono q-link" href="#contact" data-nav>REQUEST A QUOTE →</a>
+          </article>
+          <article class="prod reveal">
+            <p class="mono prod-i">P-02</p>
+            <h3>VTOL / ISR UAS</h3>
+            <p>Runway-independent fixed-wing ISR. Our flagship platform for wide-area surveillance and survey.</p>
+            <a class="mono q-link" href="#contact" data-nav>REQUEST A QUOTE →</a>
+          </article>
+          <article class="prod reveal">
+            <p class="mono prod-i">P-03</p>
+            <h3>Micro-Reconnaissance UAS</h3>
+            <p>Compact short-range reconnaissance for confined and time-critical operations.</p>
+            <a class="mono q-link" href="#contact" data-nav>REQUEST A QUOTE →</a>
+          </article>
+          <article class="prod reveal">
+            <p class="mono prod-i">P-04</p>
+            <h3>Medium-Payload Logistics UAS</h3>
+            <p>5–10 kg payload class for last-mile and inter-site lift where roads cannot serve.</p>
+            <a class="mono q-link" href="#contact" data-nav>REQUEST A QUOTE →</a>
+          </article>
+          <article class="prod reveal">
+            <p class="mono prod-i">P-05</p>
+            <h3>Payload · GCS · Edge-AI Kits</h3>
+            <p>Common-interface sensor, ground-control and compute modules for integration into existing fleets.</p>
+            <a class="mono q-link" href="#contact" data-nav>REQUEST A QUOTE →</a>
+          </article>
+          <article class="prod reveal">
+            <p class="mono prod-i">P-06</p>
+            <h3>AI Mission Analytics &amp; Fleet Dashboard</h3>
+            <p>One analytics layer across the fleet — detections, coverage, mission review and asset health.</p>
+            <a class="mono q-link" href="#contact" data-nav>REQUEST A QUOTE →</a>
+          </article>
+          <article class="prod reveal">
+            <p class="mono prod-i">P-07</p>
+            <h3>Counter-UAS Detection &amp; Airspace Awareness</h3>
+            <p>Passive detection, classification and tracking of uncooperative small UAS. Awareness only.</p>
+            <a class="mono q-link" href="#contact" data-nav>REQUEST A QUOTE →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ENGINEERING DETAIL (MACRO) ============ -->
+    <section id="payload" class="cine" data-wp="05" data-label="ENGINEERING">
+      <div class="stage">
+        <canvas id="macro-canvas"></canvas>
+        <div class="stage-ui sensor-head">
+          <p class="mono kicker">ENGINEERING DETAIL</p>
+          <h2>Sensor &amp; Payload</h2>
+        </div>
+        <div class="stage-ui macro-callout mono" id="macro-callout">
+          <span class="mc-index" id="mc-index">01 / 04</span>
+          <span class="mc-text" id="mc-text">EO/IR GIMBAL · 3-AXIS STABILISED</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TECHNOLOGY ============ -->
+    <section id="technology" class="cine" data-wp="06" data-label="TECHNOLOGY">
+      <div class="stage">
+        <canvas id="exploded-canvas"></canvas>
+        <svg id="leader-svg" class="stage-ui"></svg>
+        <div class="stage-ui arch-head">
+          <p class="mono kicker">TECHNOLOGY</p>
+          <h2>The Integrated Architecture</h2>
+          <p class="arch-sub">One autonomy stack. One payload interface. One GCS layer.<br/>Capability compounds instead of fragmenting.</p>
+        </div>
+        <div id="arch-callouts" class="stage-ui"></div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section id="services" class="copy-sec" data-wp="07" data-label="SERVICES">
+      <div class="copy-wrap wide">
+        <p class="mono kicker reveal">SERVICES</p>
+        <h2 class="reveal">Through-life Support</h2>
+        <div class="prod-grid svc">
+          <article class="prod reveal">
+            <p class="mono prod-i">S-01</p>
+            <h3>Systems Integration</h3>
+            <p>Payloads, datalinks and autonomy integrated into one qualified configuration — on our platforms or yours.</p>
+            <a class="mono q-link" href="#contact" data-nav>DISCUSS A PROGRAMME →</a>
+          </article>
+          <article class="prod reveal">
+            <p class="mono prod-i">S-02</p>
+            <h3>MRO &amp; Sustainment</h3>
+            <p>Maintenance, repair and overhaul with OEM-level configuration control and guaranteed turnaround.</p>
+            <a class="mono q-link" href="#contact" data-nav>DISCUSS A PROGRAMME →</a>
+          </article>
+          <article class="prod reveal">
+            <p class="mono prod-i">S-03</p>
+            <h3>Training</h3>
+            <p>Type-specific curricula for operators, mission commanders and maintainers — classroom to field.</p>
+            <a class="mono q-link" href="#contact" data-nav>DISCUSS A PROGRAMME →</a>
+          </article>
+          <article class="prod reveal">
+            <p class="mono prod-i">S-04</p>
+            <h3>Testing-as-a-Service</h3>
+            <p>Instrumented flight-test programmes at our captive test zone — endurance, payload and datalink trials.</p>
+            <a class="mono q-link" href="#contact" data-nav>DISCUSS A PROGRAMME →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AIRSPACE AWARENESS ============ -->
+    <section id="airspace" class="cine" data-wp="08" data-label="AIRSPACE">
+      <div class="stage">
+        <canvas id="sweep-canvas"></canvas>
+        <div class="stage-ui airspace-head">
+          <p class="mono kicker">CAPABILITY · COUNTER-UAS</p>
+          <h2>Airspace Awareness</h2>
+        </div>
+        <div class="stage-ui sweep-status mono" id="sweep-status">
+          <span class="ss" data-state="0">DETECTED</span>
+          <span class="ss" data-state="1">CLASSIFIED</span>
+          <span class="ss" data-state="2">TRACKED</span>
+        </div>
+        <p class="stage-ui airspace-note mono">
+          THIS LAYER PERFORMS DETECTION, CLASSIFICATION AND AIRSPACE AWARENESS ONLY.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ COMPANY: HQ + LEADERSHIP ============ -->
+    <section id="company" class="copy-sec" data-wp="09" data-label="COMPANY">
+      <div class="copy-wrap wide">
+        <p class="mono kicker reveal">THE COMPANY</p>
+        <h2 class="reveal">Built in India.<br/>Trusted Globally.</h2>
+        <div class="hq-grid">
+          <div class="hq-block reveal">
+            <p class="mono hq-head">HEADQUARTERS</p>
+            <p>TRICENT AEROSPACE is headquartered in <em>Lucknow, Uttar Pradesh, India</em>, where design,
+              manufacturing, systems integration and flight test operate from a single campus —
+              including a captive UAS test zone for acceptance and demonstration flights.</p>
+          </div>
+          <div class="hq-block reveal">
+            <p class="mono hq-head">HOW WE WORK</p>
+            <p>Indigenous engineering, deepened by international technology partnerships.
+              Every aircraft is built, flown and accepted before delivery, and supported by us
+              through its full service life.</p>
+          </div>
+        </div>
+
+        <p class="mono team-kicker reveal">LEADERSHIP</p>
+        <div class="team-grid">
+          <div class="team reveal">
+            <p class="mono t-role">CHIEF EXECUTIVE</p>
+            <p>Aerospace and defence programme leadership; institutional procurement and partnerships.</p>
+          </div>
+          <div class="team reveal">
+            <p class="mono t-role">CHIEF TECHNOLOGY OFFICER</p>
+            <p>Unmanned-systems and autonomy engineering; airframe, avionics and flight software.</p>
+          </div>
+          <div class="team reveal">
+            <p class="mono t-role">HEAD · MISSION SYSTEMS</p>
+            <p>EO/IR payloads, datalinks, edge compute and the AI mission-analytics platform.</p>
+          </div>
+          <div class="team reveal">
+            <p class="mono t-role">HEAD · MANUFACTURING &amp; AIRWORTHINESS</p>
+            <p>Production engineering, quality, configuration control and flight-test operations.</p>
+          </div>
+        </div>
+        <p class="mono team-note reveal">FULL LEADERSHIP PROFILES ARE SHARED WITH QUALIFIED PARTNERS ON REQUEST.</p>
+      </div>
+    </section>
+
+    <!-- ============ NEWSROOM ============ -->
+    <section id="newsroom" class="copy-sec" data-wp="10" data-label="NEWSROOM">
+      <div class="copy-wrap wide">
+        <p class="mono kicker reveal">NEWSROOM &amp; INSIGHTS</p>
+        <h2 class="reveal">From the Flight Line</h2>
+        <div class="news-grid">
+          <article class="news reveal">
+            <p class="mono n-tag">ENGINEERING</p>
+            <h3>Why edge inference changes the economics of ISR</h3>
+            <p>Processing imagery on the airframe turns a data-collection flight into a decision-delivery flight.</p>
+            <span class="mono n-read">READ · 6 MIN</span>
+          </article>
+          <article class="news reveal">
+            <p class="mono n-tag">ARCHITECTURE</p>
+            <h3>One payload interface, many platforms</h3>
+            <p>What a common mechanical, electrical and software interface actually buys an operator.</p>
+            <span class="mono n-read">READ · 5 MIN</span>
+          </article>
+          <article class="news reveal">
+            <p class="mono n-tag">PERSPECTIVE</p>
+            <h3>Airspace awareness for critical infrastructure</h3>
+            <p>Detection and classification, done passively and lawfully — the first layer every site needs.</p>
+            <span class="mono n-read">READ · 4 MIN</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="copy-sec" data-wp="11" data-label="CONTACT">
+      <div class="copy-wrap wide">
+        <p class="mono kicker reveal">CONTACT</p>
+        <h2 class="reveal">Request a Briefing<br/>or a Quotation</h2>
+        <div class="contact-grid">
+          <form id="quote-form" class="reveal" autocomplete="off">
+            <label><span class="mono">NAME</span><input type="text" name="name" required /></label>
+            <label><span class="mono">ORGANISATION</span><input type="text" name="org" required /></label>
+            <label><span class="mono">EMAIL</span><input type="email" name="email" required /></label>
+            <label><span class="mono">SECTOR</span>
+              <select name="sector">
+                <option>Defence</option>
+                <option>Homeland Security</option>
+                <option>Critical Infrastructure</option>
+                <option>Industrial</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label class="full"><span class="mono">REQUIREMENT</span><textarea name="msg" rows="4" placeholder="Platform, payload or service of interest…"></textarea></label>
+            <button type="submit" class="cta-btn"><span>SEND ENQUIRY</span><i>→</i></button>
+            <p class="mono form-note">TECHNICAL BRIEFINGS AND DEMONSTRATIONS ARE CONDUCTED UNDER NDA.</p>
+          </form>
+          <div class="contact-side reveal">
+            <p class="mono hq-head">HEADQUARTERS</p>
+            <p class="addr">TRICENT AEROSPACE<br/>Lucknow, Uttar Pradesh<br/>India</p>
+            <p class="mono hq-head">BUSINESS ENQUIRIES</p>
+            <p class="addr"><a href="mailto:info@tricentaerospace.in">info@tricentaerospace.in</a></p>
+            <p class="mono hq-head" style="margin-top:22px">WEB</p>
+            <p class="addr"><a href="https://www.tricentaerospace.in">www.tricentaerospace.in</a></p>
+            <p class="mono hq-head">RESPONSE</p>
+            <p class="addr">Quotations and briefing requests are answered within three working days.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot-brand">
+        <img class="foot-logo" src="/logo-mark.png" alt="" />
+        <div>
+          <p class="foot-name">TRICENT AEROSPACE</p>
+          <p class="mono">SENSE · INTEGRATE · DELIVER</p>
+        </div>
+      </div>
+      <nav class="foot-links mono">
+        <a href="#about" data-nav>ABOUT</a>
+        <a href="#products" data-nav>PRODUCTS</a>
+        <a href="#services" data-nav>SERVICES</a>
+        <a href="#technology" data-nav>TECHNOLOGY</a>
+        <a href="#newsroom" data-nav>NEWSROOM</a>
+        <a href="#contact" data-nav>CONTACT</a>
+      </nav>
+      <p class="mono foot-line">© 2026 TRICENT AEROSPACE · WWW.TRICENTAEROSPACE.IN · LUCKNOW, INDIA · SYSTEMS DESCRIBED SERVE DETECTION, AWARENESS AND NON-LETHAL ROLES</p>
+    </footer>
+
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
